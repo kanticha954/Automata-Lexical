@@ -12,11 +12,14 @@ public class Tokens {
     
     protected ArrayList<String> keyWords = new ArrayList<>(Arrays.asList("program", "var", "integer", "real", "boolean", "procedure", "begin",
                     "end", "if", "then", "else", "while", "do", "not"));
+   
+    //protected ArrayList<String> operatiorsR = new ArrayList<>(Arrays.asList("=","<",">","<=",">=","<>"));
+    //protected ArrayList<String> operatiorsA = new ArrayList<>(Arrays.asList("+","-","or"));
+    //protected ArrayList<String> operatiorsM = new ArrayList<>(Arrays.asList("*","/","and"));
     
-    protected ArrayList<String> delimiters = new ArrayList<>(Arrays.asList(";",".",":","(",")",","));
-    protected ArrayList<String> operatiorsR = new ArrayList<>(Arrays.asList("=","<",">","<=",">=","<>"));
-    protected ArrayList<String> operatiorsA = new ArrayList<>(Arrays.asList("+","-","or"));
-    protected ArrayList<String> operatiorsM = new ArrayList<>(Arrays.asList("*","/","and"));
+    protected ArrayList<String> operators = new ArrayList<>(Arrays.asList("=","<",">","<=",">=","<>","+","-","or","*","/","and"));
+    protected ArrayList<String> keyword = new ArrayList<> (Arrays.asList("if","then","else","endif","while","do","endwhile","print","newline","read"));
+    protected ArrayList<String> semicolon = new ArrayList<> (Arrays.asList(";",".",":","(",")",","));
     protected ArrayList<String> booleanDigits = new ArrayList<>(Arrays.asList("true", "false"));
     
     
@@ -43,7 +46,7 @@ public class Tokens {
                 String result = checkToken(token);
                 if(!result.equals("unknown")) {
 //                    System.out.println(result + " : " + token);
-                    System.out.println(token + " | "+ result + " |" + i);
+                    System.out.println(result + ": " + token);
                 }
                 else {
                     String subToken = token.substring(0, token.length() - 1);
@@ -83,14 +86,12 @@ public class Tokens {
 
         if (this.keyWords.contains(split)) {
             return "Keyword";
-        } else if (this.delimiters.contains(split)) {
-            return "Delimiter";
-        } else if (this.operatiorsR.contains((split))) {
-            return "Comparison Operator";
-        } else if (this.operatiorsA.contains(split)) {
-            return "Additive Operator";
-        } else if (this.operatiorsM.contains(split)) {
-            return "Multiplicative Operator";
+        } else if (this.operators.contains((split))) {
+            return "Operator";
+        } else if (this.semicolon.contains((split))) {
+            return "Semicolon";
+        } else if (this.keyword.contains((split))) {
+            return "Keywords";
         } else if (split.matches(this.intDigits)){
             return "Integer Digit";
         } else if (split.matches(this.floatDigits)) {
@@ -99,7 +100,7 @@ public class Tokens {
             if (this.booleanDigits.contains(split)) {
                 return "Boolean Digit";
             }
-            return "Identifier";
+            return "new identifier";
         } else if (split.matches("\\{(?s).*?")) {
             return "unknown";
         }
