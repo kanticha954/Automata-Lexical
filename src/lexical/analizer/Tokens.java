@@ -11,12 +11,7 @@ import java.util.Arrays;
 public class Tokens {
     
     protected ArrayList<String> keyWords = new ArrayList<>(Arrays.asList("program", "var", "integer", "real", "boolean", "procedure", "begin",
-                    "end", "if", "then", "else", "while", "do", "not"));
-   
-    //protected ArrayList<String> operatiorsR = new ArrayList<>(Arrays.asList("=","<",">","<=",">=","<>"));
-    //protected ArrayList<String> operatiorsA = new ArrayList<>(Arrays.asList("+","-","or"));
-    //protected ArrayList<String> operatiorsM = new ArrayList<>(Arrays.asList("*","/","and"));
-    
+                    "end", "if", "then", "else", "while", "do", "not")); 
     protected ArrayList<String> operators = new ArrayList<>(Arrays.asList("=","<",">","<=",">=","<>","+","-","or","*","/","and"));
     protected ArrayList<String> keyword = new ArrayList<> (Arrays.asList("if","then","else","endif","while","do","endwhile","print","newline","read"));
     protected ArrayList<String> semicolon = new ArrayList<> (Arrays.asList(";",".",":","(",")",","));
@@ -27,6 +22,8 @@ public class Tokens {
     protected String identifiers = "([a-z]|[A-Z])([0-9]|[a-z]+|[A-Z]|_)*";
     protected String intDigits = "[0-9]+";
     protected String floatDigits = "[0-9]+[.][0-9]+";
+    
+    protected String stringA = " "; 
     
     protected ArrayList<String> myProgram = null;
 
