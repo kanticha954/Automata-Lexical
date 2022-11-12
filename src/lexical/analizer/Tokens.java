@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- *
+ *"""
  * @author Thiago Luiz Nunes
  */
 public class Tokens {
@@ -14,7 +14,7 @@ public class Tokens {
                     "end", "if", "then", "else", "while", "do", "not")); 
     protected ArrayList<String> operators = new ArrayList<>(Arrays.asList("=","<",">","<=",">=","<>","+","-","or","*","/","and"));
     protected ArrayList<String> keyword = new ArrayList<> (Arrays.asList("if","then","else","endif","while","do","endwhile","print","newline","read"));
-    protected ArrayList<String> semicolon = new ArrayList<> (Arrays.asList(";",".",":","(",")",","));
+    protected ArrayList<String> semicolon = new ArrayList<> (Arrays.asList("()",";",".",":","(",")",","));
     protected ArrayList<String> booleanDigits = new ArrayList<>(Arrays.asList("true", "false"));
     
     
@@ -23,7 +23,7 @@ public class Tokens {
     protected String intDigits = "[0-9]+";
     protected String floatDigits = "[0-9]+[.][0-9]+";
     
-    protected String stringA = " "; 
+    protected String stringA = "/*+([a-z])+*/"; 
     
     protected ArrayList<String> myProgram = null;
 
@@ -93,11 +93,14 @@ public class Tokens {
             return "Integer Digit";
         } else if (split.matches(this.floatDigits)) {
             return "Floating Point Digit";
+   
         } else if (split.matches(this.identifiers)) {
             if (this.booleanDigits.contains(split)) {
-                return "Boolean Digit";
+                return "String";
             }
             return "new identifier";
+            
+      
         } else if (split.matches("\\{(?s).*?")) {
             return "unknown";
         }
